@@ -9,7 +9,7 @@
   <title>Pravesha'19</title>
 </head>
 
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href=" {% static 'basic_app/images/icons/favicon.ico' %}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/fonts/iconic/css/material-design-iconic-font.min.css' %}">
@@ -19,13 +19,13 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/fonts/iconic/css/material-design-iconic-font.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/css/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/css/vendor/css-hamburgers/hamburgers.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/css/vendor/animsition/css/animsition.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/css/vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/css/vendor/daterangepicker/daterangepicker.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'basic_app/index/css/util.css' %}">
@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 <body>
-	
+
 {% if user.is_authenticated %}
 
 
@@ -51,7 +51,7 @@
 <ul class="nav justify-content-end" style="padding: 1.5%; background-color: teal;" >
 		<li class="nav-item" style="padding-right: 5%;">
 			<a class="nav-item" style="color: #eaecee" href="{%url 'basic_app:user'%}">{{user.username}} - {{user.first_name}} {{user.last_name}}</a>
-		</li>  
+		</li>
 		<li class="nav-item" style="padding-right: 5%;">
 		  <a class="nav-item" href="{%url 'logout'%}" style="color:  #f9e79f;">Logout</a>
 		</li>
@@ -64,13 +64,13 @@
           <div class="intro">
              <h2 class="text-center">Please select you food preference :)</h2>
          </div>
-         <div class="buttons"> 
+         <div class="buttons">
            <form action="{% url 'basic_app:food_pref_updt' %}" method="POST">
             {% csrf_token %}
             <button class="btn btn-light" role="button" type="submit"  style="background-color: green;color:white">Veg</button>
             <input type="hidden" name="fp" value="V">
             <input type="hidden" name="no" value="{{user.profile.mob_no}}">
-           </form> 
+           </form>
            <form action="{% url 'basic_app:food_pref_updt' %}" method="POST">
             {% csrf_token %}
             <button class="btn btn-light" type="submit" style="background-color:tomato ;color:white;">Non-VEG</button></div>
@@ -79,13 +79,13 @@
            </form>
         </div>
     </div>
-  {% endif %}  
+  {% endif %}
 
 {% else %}
 
 
 
-	  
+
 	  <!-- Modal -->
 	  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: #a4508b;
 	  background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
@@ -93,8 +93,8 @@
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
 			<div class="modal-header">
-			  <h5 class="modal-title" id="exampleModalLabel"></h5> <br> 
-			  <img src="{% static 'basic_app/index/images/logo.png' %}" alt="" style="width:50%;  display: block;margin-left: auto;margin-right: auto;width: 50%;"> 
+			  <h5 class="modal-title" id="exampleModalLabel"></h5> <br>
+			  <img src="{% static 'basic_app/index/images/logo.png' %}" alt="" style="width:50%;  display: block;margin-left: auto;margin-right: auto;width: 50%;">
 			  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ></button>
 				<span aria-hidden="true">&times;</span>
 			  </button>
@@ -103,20 +103,20 @@
 					<div>
 						<div>
 							<div>
-					
+
 						  {% if registered %}
 							<h1>Thank you for registering!</h1>
 							<h3>Your ID is :{{ username }}</h3><br>
 							Please take a note of your Registration ID
 						  {% else %}
-					
-					
+
+
 							<form enctype="multipart/form-data" method="POST" action="{% url 'basic_app:register' %}" >
 							  {% csrf_token %}
 							  {{ user_form.as_p }}
 							  {{ profile_form.as_p }}
-					
-						  
+
+
 						</div>
 					  </div>
 					</div> <br>
@@ -124,18 +124,24 @@
 							Registration fee of ₹200 can be paid onspot at the registration desk.
 					</div>
 				</div>
-				
+
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			  <button type="submit" class="btn btn-primary">Register</button>
 			</div></form>
 		</div>
-	
+
 		</div>
 	  </div>
 	  {% endif %}
 
-
+	  <div class="mobile-image">
+		<nav class="navbar navbar-light bg-light" style="">
+			<a class="navbar-brand" href="#">
+			  <img src="{% static 'basic_app/index/images/vistas.png' %}" width="150" alt=""> <br>
+			</a>
+		  </nav>
+	</div>
 
 
 	<div class="container-login100" style="background-image: url('{% static 'basic_app/index/images/bg_4.png' %}');">
@@ -143,7 +149,15 @@
 			<form class="login100-form validate-form" action="{% url 'basic_app:user_login' %}" method="POST">
         {% csrf_token %}
         <span class="login100-form-title p-b-37">
-					<img src="{% static 'basic_app/index/images/logo.png' %}" alt="" style="width: 90%;">
+				<div class="mobile-image">
+						<h4 style="color:  #f54e7e;">20<sup>th</sup> Sep'19</h4>
+						<div class="alert alert-light" role="alert" style="font-size: 15px;">
+								Department of Computer Science and Engineering
+						</div>
+
+				</div>
+					<img src="{% static 'basic_app/index/images/logo.png' %}" alt="" style="width: 90%;"> <br>
+
 				</span>
 
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Please Enter Registration ID">
@@ -185,11 +199,11 @@
 				</div>
 			</form>
 
-			
+
 		</div>
 	</div>
 
-	
+
 	<div id="dropDownSelect1"></div>
   {% endif %}
 
@@ -204,7 +218,7 @@
 					<h3 class="name" style="padding-top:5%;">Paper Presentation</h3>
 					<p class="description">Projects on digitization and development. <br><br> </p><a href="#" class="learn-more" data-toggle="modal" data-target="#exampleModalLongpp"> Learn more »</a>
 					{% if user.is_authenticated %}<br> <br> {% if user.profile.pp == False %}<form action="{% url 'basic_app:participate' %}" method="POST">{% csrf_token %}<button type="submit" class="btn btn-success" >Join</button> <input type="hidden" name="event" value="pp"><input type="hidden" name="no" value="{{user.profile.mob_no}}"></form> {% else %} <form action="{% url 'basic_app:departicipate' %}" method="POST">{% csrf_token %}<input type="hidden" name="event" value="pp"><input type="hidden" name="no" value="{{user.profile.mob_no}}"><button type="submit" class="btn btn-danger">Cancel</button></form> {% endif %}{% endif %}
-				</div> 
+				</div>
 			</div>
 			<div class="col-sm-6 col-md-5 col-lg-4 item">
 				<div class="box"><img src="{% static 'basic_app/index/images/politics.svg' %}" alt="" style="width: 35%;">
@@ -271,7 +285,7 @@
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 </div>
 
 
@@ -291,7 +305,7 @@
 						<!-- {% if user.is_authenticated %}<br> <br> {% if user.profile.tiktok == False %}<form action="{% url 'basic_app:participate' %}" method="POST">{% csrf_token %}<button type="submit" class="btn btn-success" >Join</button> <input type="hidden" name="event" value="tiktok"><input type="hidden" name="no" value="{{user.profile.mob_no}}"></form> {% else %} <form action="{% url 'basic_app:departicipate' %}" method="POST">{% csrf_token %}<input type="hidden" name="event" value="tiktok"><input type="hidden" name="no" value="{{user.profile.mob_no}}"><button type="submit" class="btn btn-danger">Cancel</button></form> {% endif %}{% endif %} -->
 						</div>
 					</div>
-			
+
 			<div class="col-sm-6 col-md-5 col-lg-4 item">
 				<div class="box"><img src="{% static 'basic_app/index/images/group.svg' %}" alt="" style="width: 35%;">
 					<h3 class="name" style="padding-top:5%;">Mannequin Challenge</h3>
@@ -306,10 +320,10 @@
 					<h3 class="name">Open Mic</h3>
 						<!-- <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p> -->
 						<a href="#" class="learn-more" class="learn-more" data-toggle="modal" data-target="#exampleModalLongopm">Learn more »</a>
-						<!-- {% if user.is_authenticated %}<br> <br> {% if user.profile.opm == False %}<form action="{% url 'basic_app:participate' %}" method="POST">{% csrf_token %}<button type="submit" class="btn btn-success" >Join</button> <input type="hidden" name="event" value="opm"><input type="hidden" name="no" value="{{user.profile.mob_no}}"></form> {% else %} <form action="{% url 'basic_app:departicipate' %}" method="POST">{% csrf_token %}<input type="hidden" name="event" value="opm"><input type="hidden" name="no" value="{{user.profile.mob_no}}"><button type="submit" class="btn btn-danger">Cancel</button></form> {% endif %}{% endif %} --> 
+						<!-- {% if user.is_authenticated %}<br> <br> {% if user.profile.opm == False %}<form action="{% url 'basic_app:participate' %}" method="POST">{% csrf_token %}<button type="submit" class="btn btn-success" >Join</button> <input type="hidden" name="event" value="opm"><input type="hidden" name="no" value="{{user.profile.mob_no}}"></form> {% else %} <form action="{% url 'basic_app:departicipate' %}" method="POST">{% csrf_token %}<input type="hidden" name="event" value="opm"><input type="hidden" name="no" value="{{user.profile.mob_no}}"><button type="submit" class="btn btn-danger">Cancel</button></form> {% endif %}{% endif %} -->
 					</div>
 				</div>
-			
+
 			<div class="col-sm-6 col-md-5 col-lg-4 item">
 				<div class="box"><img src="{% static 'basic_app/index/images/vv.png' %}" alt="" style="width: 25%;">
 					<h3 class="name" style="padding-top:5%;">Meme Creation</h3>
@@ -354,17 +368,17 @@
 
 <div class="footer-basic">
         <footer>
-            <div class="social"><a href="https://www.instagram.com/pravesha_19?r=nametag"><i class="icon ion-social-instagram"></i></a><a href="https://t.me/pravesha19"><i class="icon ion-paper-airplane"></i></a></div>
+            <div class="social"><a href="https://www.instagram.com/pravesha_19?r=nametag"><i class="icon ion-social-instagram"></i></a><a href="https://t.me/pravesha19"><i class="icon ion-paper-airplane"></i></a><a href="mailto: pravesha2k19@gmail.com"><i class="icon ion-email"></i></a><a href="https://goo.gl/maps/i3UzLLgmjZT3SX1d7"><i class="icon ion-ios-location"></i></a></div>
             <ul class="list-inline">
 				<li class="list-inline-item" style="color: black;"><a href="#">Home</a></li>
 				<li class="list-inline-item" style="color: black;"><a href="#" data-toggle="modal" data-target="#exampleModalCentercontact">Contact Us</a></li>
             </ul>
-            <p class="copyright">Pracesha'19 © &nbsp; <br> Design &amp; Developed Highnes Joseph&nbsp;</p>
+            <p class="copyright">Pravesha'19 © &nbsp; <br> Design &amp; Developed : Highnes Joseph&nbsp;</p>
         </footer>
 	</div>
-	
 
-  
+
+
   <!-- Modal for PP--------------------------------------------------- -->
   <div class="modal fade" id="exampleModalLongpp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -377,15 +391,15 @@
 		</div>
 		<div class="modal-body">
 			->	Participants should submit their papers at pravesha2k19@gmail.com along with Registration ID. <br><br>
-			->  Papers should be sumitted on or before 18/09/2019. <br><br>
+			->  Papers should be submitted on or before 18/09/2019. <br><br>
 			->  Maximum time duration of the presentation should not exceed 15 minutes. <br><br>
-			->	No prepration time will be given. <br><br>
+			->	No preparation time will be given. <br><br>
 			->	Participants are requested to bring a copy of their paper in a pendrive. <br><br>
 			->  Judges decision will be final.
 
 		</div>
 		<div class="modal-footer">
-			{% if not user.is_authenticated %} 
+			{% if not user.is_authenticated %}
 				<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 			{%else%}
 			  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -411,10 +425,10 @@
 				->  Electronic devices are strictly prohibitted. <br><br>
 				->  Any cause of action towards the questionaire will result in immediate disqualification. <br><br>
 				->  Judges decision will be final.
-	
+
 			</div>
 			<div class="modal-footer">
-					{% if not user.is_authenticated %} 
+					{% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -423,7 +437,7 @@
 		  </div>
 		</div>
 	  </div>
-	
+
 
 	    <!-- Modal for BAT--------------------------------------------------- -->
 		<div class="modal fade" id="exampleModalLongbat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -440,10 +454,10 @@
 					->  Maximum of 5 minutes will be alloted for each team. <br><br>
 					->  Using any form of vulgarity will cause immediate disqualification with no prior notice. <br><br>
 					->  Judges decision will be final.
-		
+
 				</div>
 				<div class="modal-footer">
-						{% if not user.is_authenticated %} 
+						{% if not user.is_authenticated %}
 						<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 					{%else%}
 					  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -467,14 +481,14 @@
 				<div class="modal-body">
 					->	A team can consist of 4-7 members. <br><br>
 					->	Team will be provided with random properties and the team have to perform an ad for the given product using the properties given. <br><br>
-					->  Maximum  time of 15 minutes <i>(10 min prepration + 5 min perfomance) </i> will be alloted for each team. <br><br>
+					->  Maximum  time of 15 minutes <i>(10 min preparation + 5 min perfomance) </i> will be alloted for each team. <br><br>
 					->  All the properties given to the team should be utilized. <br><br>
 					->  Using any form of vulgarity will cause immediate disqualification with no prior notice. <br><br>
 					->  Judges decision will be final.
-		
+
 				</div>
 				<div class="modal-footer">
-					{% if not user.is_authenticated %} 
+					{% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 					{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -500,10 +514,10 @@
 					->  Number of boot attempts also will be considered as a constraint. <br><br>
 					->  Any form of malpractice will cause immediate disqualification with no prior notice. <br><br>
 					->  Judges decision will be final.
-		
+
 				</div>
 				<div class="modal-footer">
-						{% if not user.is_authenticated %} 
+						{% if not user.is_authenticated %}
 						<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 					{%else%}
 					  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -530,10 +544,10 @@
 				->  This will be a time based event. <br><br>
 				->  Any form of malpractice will cause immediate disqualification with no prior notice. <br><br>
 				->  Judges decision will be final.
-	
+
 			</div>
 			<div class="modal-footer">
-					{% if not user.is_authenticated %} 
+					{% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -558,10 +572,10 @@
 				->  The participants are requested to bring their own necessary requirements (Karoke,Music Tracks,any other materials or properties,etc). <br><br>
 				->  Any form of vulgarity will cause immediate disqualification with no prior notice. <br><br>
 				->  Judges decision will be final.
-	
+
 			</div>
 			<div class="modal-footer">
-					{% if not user.is_authenticated %} 
+					{% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -588,10 +602,10 @@
 				->  Any form of editing is strictly prohibitted. <br><br>
 				->  Candidate should submit their photos within 3.00 PM at the registration desk. <br><br>
 				->  Judges decision will be final.
-	
+
 			</div>
 			<div class="modal-footer">
-				{% if not user.is_authenticated %} 
+				{% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -606,22 +620,22 @@
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
 			<div class="modal-header">
-			  <h5 class="modal-title" id="exampleModalLongTitle">Moment of the Day</h5>
+			  <h5 class="modal-title" id="exampleModalLongTitle">Treasure Hunt</h5>
 			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			  </button>
 			</div>
 			<div class="modal-body">
-				->	A team can have maximum of two members. <br><br>
+				->	A team can have maximum of four members. <br><br>
 				->  Mobile phones with internet connection are mandatory <br><br>
 				->  Photos should be taken within the campus. <br><br>
 				->  Any form of practice against the event rules will cause immediate disqualification. <br><br>
 				->  Only teams who finishes the task within the event time will be considered. <br><br>
 				->  Judges decision will be final.
-	
+
 			</div>
 			<div class="modal-footer">
-				{% if not user.is_authenticated %} 
+				{% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -647,11 +661,11 @@
 				->  Wifi will be provided. <br><br>
 				->  Any form of hacks or practice against the event rules will cause immediate disqualification of the squad. <br><br>
 				->  Judges decision will be final. <br><br>
-				<div style="color: tomato;">->  This event has an extra reg fee of ₹50.</div>	
-	
+				<div style="color: tomato;">->  This event has an extra reg fee of ₹50.</div>
+
 			</div>
 			<div class="modal-footer">
-					{% if not user.is_authenticated %} 
+					{% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -679,10 +693,10 @@
 				->  Any form of vulgarity politics or troll aginst any individual will cause immediate disqualification with no prior notice. <br><br>
 				->  Judges decision will be final. <br><br>
 
-	
+
 			</div>
 			<div class="modal-footer">
-					<!-- {% if not user.is_authenticated %} 
+					<!-- {% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -712,10 +726,10 @@
 				->  Winners will be selected based on the number of likes. <br><br>
 				->  Judges decision will be final. <br><br>
 
-	
+
 			</div>
 			<div class="modal-footer">
-					<!-- {% if not user.is_authenticated %} 
+					<!-- {% if not user.is_authenticated %}
 					<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 				{%else%}
 				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -745,10 +759,10 @@
 					->	Using any form of filter,autotuning or similar apps will result disqualification. <br> <br>
 					->  Judges decision will be final. <br><br>
 
-		
+
 				</div>
 				<div class="modal-footer">
-						<!-- {% if not user.is_authenticated %} 
+						<!-- {% if not user.is_authenticated %}
 						<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 					{%else%}
 					  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -778,7 +792,7 @@
 
 				</div>
 				<div class="modal-footer">
-						<!-- {% if not user.is_authenticated %} 
+						<!-- {% if not user.is_authenticated %}
 						<button type="button" class="btn btn-success" data-dismiss="modal">Sign In to Join</button>
 					{%else%}
 					  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -806,8 +820,8 @@
 				 <b style="padding-left: 62px;">7401464042 </b> - Highnes Joseph <br> <br>
 				<b style="padding-left: 62px;">9840723698 </b> - Trishiraj <br> <br>
 				<i style="padding-left: 62px;color: rgb(35, 155, 35);"> (Staff coordinator)</i> <br><br>
-				<b style="padding-left: 62px;">8124420832 </b> - J Senthil Kumar 
-				
+				<b style="padding-left: 62px;">8124420832 </b> - J Senthil Kumar
+
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 			</div>

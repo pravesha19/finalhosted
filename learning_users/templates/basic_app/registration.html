@@ -16,17 +16,17 @@
 <body style="background-color: #a4508b;
 background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
 ">
-    
-  
+
+
 <div style="padding-bottom: 5%;"></div>
 
       {% if registered %}
   <div class="container">
       <div class="jumbotron">
         <h3>Thank you for registering</h3> <h3>Your ID is :{{ username }}</h3>
-        
+
         <hr class="my-4">
-        <p>Please take a note of your Registration ID. <br><br> 
+        <p>Please take a note of your Registration ID.You are just one more step away! Please signin to select your events. <br><br>
           <div class="alert alert-info" role="alert">
             We have sent you a mail with more details
           </div>
@@ -34,7 +34,7 @@ background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
         <a class="btn btn-success" href="{% url 'index' %}" role="button">Login Now</a>
       </div>
 
-      
+
         {% else %}
 
 

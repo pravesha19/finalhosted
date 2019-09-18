@@ -22,6 +22,22 @@ def index(request):
     return render(request,'basic_app/index.html',{'user_form':user_form,
                            'profile_form':profile_form,})
 
+def coordinator(request):
+    footfall = len(UserProfileInfo.objects.filter(cs=False))-2
+    pp_l = len(UserProfileInfo.objects.filter(pp=True))
+    bat_l = len(UserProfileInfo.objects.filter(bat=True))
+    tq_l = len(UserProfileInfo.objects.filter(tq=True))
+    ar_l = len(UserProfileInfo.objects.filter(ar=True))
+    aio_l = len(UserProfileInfo.objects.filter(aio=True))
+    ty_l = len(UserProfileInfo.objects.filter(ty=True))
+    syt_l = len(UserProfileInfo.objects.filter(syt=True))
+    mod_l = len(UserProfileInfo.objects.filter(mod=True))
+    th_l = len(UserProfileInfo.objects.filter(th=True))
+    pubg_l = len(UserProfileInfo.objects.filter(pubg=True))
+    logleft = len(User.objects.filter(last_login=None))
+    left = len(UserProfileInfo.objects.filter(cs=False,pp=False,bat=False,tq=False,ar=False,aio=False,ty=False,syt=False,mod=False,th=False,pubg=False)) - 2
+    return render(request, 'basic_app/coordinator.html',{'footfall':footfall ,'pp_l':pp_l,'bat_l':bat_l,'tq_l':tq_l,'ar_l':ar_l,'aio_l':aio_l,'ty_l':ty_l,'syt_l':syt_l,'mod_l':mod_l,'th_l':th_l,'pubg_l':pubg_l,'left':left,'logleft':logleft})
+
 @login_required
 def special(request):
     # Remember to also set login url in settings.py!
@@ -50,10 +66,10 @@ def register(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save(commit=False)
             profile = profile_form.save(commit=False)
-            
+
             if User.objects.filter(email=user.email).exists() or UserProfileInfo.objects.filter(mob_no=profile.mob_no) or UserProfileInfo.objects.filter(college_reg_id=profile.college_reg_id):
                 print("Exixt")
-            else:    
+            else:
                 # Save User Form to Database
                 user = user_form.save()
 
@@ -68,7 +84,7 @@ def register(request):
                 # Now we deal with the extra info!
 
                 # Can't commit yet because we still need to manipulate
-                
+
 
                 # Set One to One relationship between
                 # UserForm and UserProfileInfoForm
@@ -96,8 +112,8 @@ def register(request):
                 from_email = settings.EMAIL_HOST_USER
                 to_list = [user.email]
                 send_mail(subject,message,from_email,to_list,fail_silently=True)
-                
-                
+
+
 
         else:
             # One of the forms was invalid if this else gets called.
@@ -145,7 +161,7 @@ def user_login(request):
                 if user.profile.cs == False:
                     return HttpResponseRedirect(reverse('index'))
                 else:
-                    print("HI")    
+                    return HttpResponseRedirect('coordinator')
             else:
                 # If account is not active:
                 return HttpResponse("Your account is not active.")
@@ -156,7 +172,7 @@ def user_login(request):
 
     else:
         #Nothing has been provided for username or password.
-        return render(request, 'basic_app/login.html', {})
+        return HttpResponseRedirect(reverse('index'))
 
 
 def food_pref_updt(request):
@@ -230,3 +246,13 @@ def departicipate(request):
 
 def user(request):
     return render(request, 'basic_app/user.html')
+
+
+def adminpanel(request):
+    user_list = UserProfileInfo.objects.all
+    userinfo_list = User.objects.all
+    return render(request,'basic_app/adminpanel.html',{'user_list':user_list,
+                           'userinfo_list':userinfo_list,})
+
+
+
